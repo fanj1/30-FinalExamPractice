@@ -29,6 +29,7 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 ########################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -101,7 +102,41 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
-    
+
+    p = rg.Point(point.x, point.y)
+    c1 = rg.Circle(p, radius)
+    c1.fill_color = color
+    c1.attach_to(window)
+    window.render()
+    for k in range(n):
+        p1 = rg.Point(p.x, p.y)
+        for j in range(k + 1):
+            c1 = rg.Circle(p1, radius)
+            c1.fill_color = color
+            p2 = rg.Point(c1.center.x - radius, c1.center.y)
+            p3 = rg.Point(c1.center.x + radius, c1.center.y)
+            line = rg.Line(p2, p3)
+            p1.x = p1.x + 2 * radius
+            c1.attach_to(window)
+            line.attach_to(window)
+            window.render()
+        p.x = p.x - radius
+        p.y = p.y - radius * math.sqrt(3)
+    p = rg.Point(point.x, point.y)
+    for k in range(n - 1):
+        p.x = p.x - radius
+        p.y = p.y + radius * math.sqrt(3)
+        p1 = rg.Point(p.x, p.y)
+        for j in range(k + 2):
+            c1 = rg.Circle(p1, radius)
+            c1.fill_color = color
+            p2 = rg.Point(c1.center.x - radius, c1.center.y)
+            p3 = rg.Point(c1.center.x + radius, c1.center.y)
+            line = rg.Line(p2, p3)
+            p1.x = p1.x + 2 * radius
+            c1.attach_to(window)
+            line.attach_to(window)
+            window.render()
 
 
 def run_test_many_hourglasses():
@@ -180,6 +215,51 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+
+    point = rg.Point(square.center.x, square.center.y)
+    radius = square.length_of_each_side()
+    count = 0
+    for i in range(m):
+
+        if count == len(colors):
+            count = 0
+        color = colors[count]
+        count = count + 1
+
+        p = rg.Point(point.x, point.y)
+        c1 = rg.Circle(p, radius)
+        c1.fill_color = color
+        c1.attach_to(window)
+        window.render()
+        for k in range(i - 1):
+            p1 = rg.Point(p.x, p.y)
+            for j in range(k + 2):
+                c1 = rg.Circle(p1, radius)
+                c1.fill_color = color
+                p2 = rg.Point(c1.center.x - radius, c1.center.y)
+                p3 = rg.Point(c1.center.x + radius, c1.center.y)
+                line = rg.Line(p2, p3)
+                p1.x = p1.x + 2 * radius
+                c1.attach_to(window)
+                line.attach_to(window)
+                window.render()
+            p.x = p.x - radius
+            p.y = p.y - radius * math.sqrt(3)
+        p = rg.Point(point.x, point.y)
+        for k in range(n - 1):
+            p.x = p.x - radius
+            p.y = p.y + radius * math.sqrt(3)
+            p1 = rg.Point(p.x, p.y)
+            for j in range(k + 2):
+                c1 = rg.Circle(p1, radius)
+                c1.fill_color = color
+                p2 = rg.Point(c1.center.x - radius, c1.center.y)
+                p3 = rg.Point(c1.center.x + radius, c1.center.y)
+                line = rg.Line(p2, p3)
+                p1.x = p1.x + 2 * radius
+                c1.attach_to(window)
+                line.attach_to(window)
+                window.render()
 
 
 # ----------------------------------------------------------------------
