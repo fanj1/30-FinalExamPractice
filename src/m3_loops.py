@@ -217,6 +217,18 @@ def practice_problem3(start, n, threshold):
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
 
+    list_int = []
+    k = 0
+    num = 0
+    while True:
+        if math.sin(start + k) + math.cos(start + k) > threshold:
+            list_int = list_int + [start + k]
+            num = num + 1
+        k = k + 1
+        if num == n:
+            break
+    return list_int
+
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.

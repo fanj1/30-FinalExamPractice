@@ -142,6 +142,12 @@ def practice_problem4a(sequence):
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
 
+    ans = []
+    for k in range(len(sequence) - 1):
+        if sequence[k] == sequence[k + 1]:
+                ans = ans + [k]
+    return ans
+
 
 def run_test_practice_problem4b():
     """ Tests the    practice_problem4b    function. """
@@ -204,6 +210,13 @@ def practice_problem4b(sequence):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   10 minutes.
     ####################################################################
+
+    ans = sequence[0]
+
+    for k in range(0, len(sequence), 2):
+        if sequence[k] > ans:
+            ans = sequence[k]
+    return ans
 
 
 def run_test_practice_problem4c():
@@ -307,6 +320,17 @@ def practice_problem4c(points):
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
 
+    k = 0
+    while True:
+        if is_prime(points[k].x) and is_prime(points[k].y):
+            a = points[k].x
+            points[k].x = points[k].y
+            points[k].y = a
+            return points[k]
+        if k == len(points) - 1:
+            return 'Not Found'
+        k = k + 1
+
 
 def run_test_practice_problem4d():
     """ Tests the    practice_problem4d    function. """
@@ -398,6 +422,12 @@ def practice_problem4d(sequence):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
+
+    ans = 0
+    for k in range(len(sequence) - 1):
+        if is_prime(sequence[k]) and is_prime(sequence[k + 1]) and not sequence[k] == sequence[k + 1]:
+            ans = ans + sequence[k]
+    return ans
 
 
 # ----------------------------------------------------------------------
