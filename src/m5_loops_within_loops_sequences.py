@@ -119,6 +119,13 @@ def integers(sequence_of_sequences):
     #    TIME ESTIMATE:  10 minutes.
     # ------------------------------------------------------------------
 
+    ans = []
+    for k in range(len(sequence_of_sequences)):
+        for j in range(len(sequence_of_sequences[k])):
+            if type(sequence_of_sequences[k][j]) is int:
+                ans = ans + [sequence_of_sequences[k][j]]
+    return ans
+
 
 def run_test_big_letters():
     """ Tests the    big_letters    function. """
@@ -211,6 +218,14 @@ def big_letters(sequence_of_sequences):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:  12 minutes.
     # ------------------------------------------------------------------
+
+    ans = ''
+    for k in range(len(sequence_of_sequences)):
+        if type(sequence_of_sequences[k]) is str:
+            for j in range(len(sequence_of_sequences[k])):
+                if sequence_of_sequences[k][j].isupper():
+                    ans = ans + sequence_of_sequences[k][j]
+    return ans
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
